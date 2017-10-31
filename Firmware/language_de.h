@@ -1,11 +1,10 @@
-
-+/**
- + * German
- + *
- + * LCD Menu Messages
- + * Please note these are limited to 17 characters!
- + *
- + */
+/**
+ * German
+ *
+ * LCD Menu Messages
+ * Please note these are limited to 17 characters!
+ *
+ */
 
 #define WELCOME_MSG							CUSTOM_MENDEL_NAME " bereit."
 #define MSG_SD_INSERTED						"SD eingesetzt"
@@ -72,7 +71,6 @@
 #define MSG_PREHEAT							"Vorwaermen"
 #define MSG_UNLOAD_FILAMENT					"Filament auswerfen"
 #define MSG_LOAD_FILAMENT					"Filament laden"
-#define MSG_LOAD_ALL						"Alle laden"
 #define MSG_LOAD_FILAMENT_1					"Filament 1 laden"
 #define MSG_LOAD_FILAMENT_2					"Filament 2 laden"
 #define MSG_LOAD_FILAMENT_3					"Filament 3 laden"
@@ -82,6 +80,7 @@
 #define MSG_UNLOAD_FILAMENT_3				"Filam.3 auswerfen"
 #define MSG_UNLOAD_FILAMENT_4				"Filam.4 auswerfen"
 #define MSG_UNLOAD_ALL						"Alle auswerfen"
+#define MSG_LOAD_ALL						"Alle laden"
 
 #define MSG_RECTRACT						"Retract"
 #define MSG_ERROR							"FEHLER:"
@@ -174,7 +173,7 @@
 #define MSG_SELFTEST_ENDSTOPS				"Endschalter"
 #define MSG_SELFTEST_MOTOR					"Motor"
 #define MSG_SELFTEST_ENDSTOP				"Endstop"
-#define MSG_SELFTEST_ENDSTOP_NOTHIT 		"Endsch. n. erreicht"
+#define MSG_SELFTEST_ENDSTOP_NOTHIT			"Endsch. n. erreicht"
 #define MSG_SELFTEST_OK						"Selbsttest OK"
 #define MSG_LOOSE_PULLEY					"Lose Riemenscheibe"
 
@@ -321,7 +320,7 @@
 #define MSG_FILE_INCOMPLETE					"Datei unvollstaedig. Trotzdem fortfahren?"
 #define MSG_WIZARD							"Assistent"
 #define	MSG_WIZARD_WELCOME					"Hallo, ich bin Dein Original Prusa i3 Drucker. Sollen wir mit dem Setup-Prozess beginnen?"
-#define	MSG_WIZARD_QUIT						"Sie koennen den Assistenten im Menu erneut aufrufen: Kalibrierung -> Assistent"
+#define MSG_WIZARD_QUIT						"Sie koennen den Assistenten im Menu erneut aufrufen: Kalibrierung -> Assistent"
 #define MSG_WIZARD_SELFTEST					"Zunaechst fuehre ich den Selbsttest durch um die haeufigsten Probleme bei der Aufbau zu ueberpruefen."
 #define MSG_WIZARD_CALIBRATION_FAILED		"Bitte ueberpruefen Sie unser Handbuch und beheben Sie das Problem. Fahren Sie dann mit dem Assistenten fort, indem Sie den Drucker neu starten."
 #define MSG_WIZARD_XYZ_CAL					"Beginne jetzt mit der XYZ-Kalibrierung. Es wird ca. 12 Minuten dauern"
@@ -342,5 +341,3 @@
 #define MSG_PLA_FILAMENT_LOADED				"Ist PLA Filament geladen?"
 #define MSG_PLEASE_LOAD_PLA					"Bitte laden Sie zuerst PLA Filament."
 #define MSG_FILE_CNT						"Einige Dateien werden nicht sortiert. Max. 100 Dateien innerhalb einem Ordner sind zugelassen."
-#define MSG_WIZARD_HEATING					"Vorheizen der Duese. Bitte warten."
-
