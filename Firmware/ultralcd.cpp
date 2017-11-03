@@ -2512,8 +2512,11 @@ int8_t lcd_show_multiscreen_message_yes_no_and_wait_P(const char *msg, bool allo
 				while (lcd_clicked());
 				delay(10);
 				while (lcd_clicked());
-				KEEPALIVE_STATE(IN_HANDLER);
-				if(msg_next == NULL) return yes;
+				if (msg_next == NULL) {
+					KEEPALIVE_STATE(IN_HANDLER);
+					lcd_set_custom_characters();
+					return yes;
+				}
 				else break;
 			}
 		}
@@ -3068,6 +3071,19 @@ static void lcd_silent_mode_set() {
   digipot_init();
   lcd_goto_menu(lcd_settings_menu, 7);
 }
+
+static void lcd_silent_mode_set_tune() {
+  switch (SilentModeMenu) {
+  case 0: SilentModeMenu = 1; break;
+  case 1: SilentModeMenu = 2; break;
+  case 2: SilentModeMenu = 0; break;
+  default: SilentModeMenu = 0; break;
+  }
+  eeprom_update_byte((unsigned char *)EEPROM_SILENT, SilentModeMenu);
+  digipot_init();
+  lcd_goto_menu(lcd_tune_menu, 8);
+}
+
 static void lcd_set_lang(unsigned char lang) {
   lang_selected = lang;
   firstrun = 1;
@@ -3285,6 +3301,7 @@ void lcd_wizard() {
 		lcd_wizard(0);
 	}
 	else {
+		lcd_return_to_status();
 		lcd_update_enable(true);
 		lcd_update(2);
 	}
@@ -4822,17 +4839,6 @@ static void lcd_autostart_sd()
 }
 
 
-static void lcd_silent_mode_set_tune() {
-  switch (SilentModeMenu) {
-  case 0: SilentModeMenu = 1; break;
-  case 1: SilentModeMenu = 2; break;
-  case 2: SilentModeMenu = 0; break;
-  default: SilentModeMenu = 0; break;
-  }
-  eeprom_update_byte((unsigned char *)EEPROM_SILENT, SilentModeMenu);
-  digipot_init();
-  lcd_goto_menu(lcd_tune_menu, 9);
-}
 #endif
 
 static void lcd_colorprint_change() {
@@ -4864,13 +4870,13 @@ static void lcd_tune_menu()
 #ifdef FILAMENTCHANGEENABLE
   MENU_ITEM(function, MSG_FILAMENTCHANGE, lcd_colorprint_change);//7
 #endif
-  
-  if (!farm_mode) { //dont show in menu if we are in farm mode
+
+  if (!farm_mode) { //dont show in menu if we are in farm mode //8
 	  switch (SilentModeMenu) {
-	  case 0: MENU_ITEM(function, MSG_SILENT_MODE_OFF, lcd_silent_mode_set); break;
-	  case 1: MENU_ITEM(function, MSG_SILENT_MODE_ON, lcd_silent_mode_set); break;
-	  case 2: MENU_ITEM(function, MSG_AUTO_MODE_ON, lcd_silent_mode_set); break;
-	  default: MENU_ITEM(function, MSG_SILENT_MODE_OFF, lcd_silent_mode_set); break;
+	  case 0: MENU_ITEM(function, MSG_SILENT_MODE_OFF, lcd_silent_mode_set_tune); break;
+	  case 1: MENU_ITEM(function, MSG_SILENT_MODE_ON, lcd_silent_mode_set_tune); break;
+	  case 2: MENU_ITEM(function, MSG_AUTO_MODE_ON, lcd_silent_mode_set_tune); break;
+	  default: MENU_ITEM(function, MSG_SILENT_MODE_OFF, lcd_silent_mode_set_tune); break;
 	  }
   }
 
